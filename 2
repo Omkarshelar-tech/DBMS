@@ -1,0 +1,33 @@
+-- Create a new database
+CREATE DATABASE Lala;
+USE Lala;
+
+-- Create the Movie table with AUTO_INCREMENT ID
+CREATE TABLE Movie (
+ID INT AUTO_INCREMENT PRIMARY KEY,
+Movie_Name VARCHAR(50),
+release_year INT,
+rating INT
+);
+
+-- Insert movie data
+INSERT INTO Movie (Movie_Name, release_year, rating)
+VALUES
+('Munjya', 2024, 4),
+('Fifty Shades of Gray', 2018, 4),
+('Animal', 2023, 3);
+
+-- View all movies
+SELECT * FROM Movie;
+
+-- 🔁 Update rating for 'Animal' movie
+UPDATE Movie
+SET rating = 5
+WHERE Movie_Name = 'Animal';
+
+-- ❌ Delete a movie (e.g., 'Fifty Shades of Gray')
+DELETE FROM Movie
+WHERE Movie_Name = 'Fifty Shades of Gray';
+
+-- View updated table
+SELECT * FROM Movie;
