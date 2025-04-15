@@ -1,0 +1,2 @@
+DELETE FROM movie_rating
+WHERE title = 'Interstellar';
