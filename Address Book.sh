@@ -1,0 +1,105 @@
+#!/bin/bash
+
+Create() {
+ echo "Enter name for ur address book: "
+ read name
+ #To check if the file already exist
+ if [ -e "$name" ]
+ then
+ echo "Error: $name name already exists!"
+ else
+ touch $name
+ echo "File created successfully..."
+ fi
+}
+
+Display() {
+ echo "Enter address book name for displaying: "
+ read display
+ #To check if the file already exist
+ if [ -e "$display" ]
+ then
+ cat $display
+ else
+ echo "Error: File $display does not exist!"
+ fi
+}
+
+Insert() {
+ echo "Enter address book name: "
+ read book
+ #check if address book is available or not
+ if [ -e "$book" ]
+ then
+ echo "Enter Email ID: "
+ read email
+ #check if email already present or not
+ if grep -q "$email" "$book"
+ then
+ echo "Error: $email already exist"
+ else
+ echo "Enter: PRN, First-Name, Last-name, MOB"
+ read prn fname lname mob
+ echo "$prn $fname $lname $mob $email" >> "$book"
+ echo "Record Inserted!"
+ fi
+ else
+ echo "$book does not exist!"
+ fi
+}
+
+Modify() {
+ echo "Enter address book name: "
+ read book
+ #check if address book is available or not
+ if [ -e "$book" ]
+ then
+ echo "Enter Email ID to modify data: "
+ read email
+ old_record=$(grep "$email" "$book")
+ #check if email is already present or not
+ if grep -q "$email" "$book"
+ then
+ echo "Enter modified: PRN, First-Name, Last-name, MOB, Email:"
+ read prn fname lname mob email
+ new_record="$prn $fname $lname $mob $email"
+ echo "Old data: $old_record"
+ echo "New data: $new_record"
+ sed -i s/"$old_record"/"$new_record"/g $book
+ echo "Record updated successfully..."
+ else
+ echo "Error: $email does not exist!"
+ fi
+ else
+ echo "Error: $book does not exist!"
+ fi
+}
+
+Exit() {
+ echo "Exiting the program...GoodBye!"
+ exit 0
+}
+
+
+while [ true ]
+do
+echo ""
+echo "***** Menu *****"
+echo "1.Create"
+echo "2.Display"
+echo "3.Insert"
+echo "4.Modify"
+echo "5.Exit"
+echo "Enter ur choice: "
+read choice
+
+case $choice in
+1) Create ;;
+2) Display ;;
+3) Insert ;;
+4) Modify ;;
+5) Exit ;;
+*) echo "Invalid Choice!"
+esac
+
+done
