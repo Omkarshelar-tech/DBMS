@@ -1,0 +1,250 @@
+Environment Setup (Kali Linux)
+
+Step 1: Install venv
+
+sudo apt update
+sudo apt install python3-venv -y
+
+Step 2: Create virtual environment
+
+python3 -m venv selenium-env
+
+Step 3: Activate environment
+
+source selenium-env/bin/activate
+
+Step 4: Install Selenium
+
+pip install selenium
+
+Step 5: Install browser driver
+
+sudo apt install chromium chromium-driver -y
+🧪 Experiment 1
+
+Question: Design and implement Selenium environment setup to configure WebDriver and verify browser.
+
+Code:
+
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://www.google.com")
+
+How to Run:
+
+nano exp1.py
+python exp1.py
+
+Explanation: This program initializes WebDriver and opens Google to verify setup.
+
+🧪 Experiment 2
+
+Question: Design and implement basic browser navigation to automate opening, refreshing, and navigating pages.
+
+Code:
+
+from selenium import webdriver
+import time
+
+driver = webdriver.Chrome()
+
+driver.get("https://google.com")
+time.sleep(2)
+
+driver.get("https://youtube.com")
+time.sleep(2)
+
+driver.back()
+driver.forward()
+driver.refresh()
+
+How to Run:
+
+nano exp2.py
+python exp2.py
+
+Explanation: Demonstrates navigation like back, forward, and refresh.
+
+🧪 Experiment 3
+
+Question: Design and implement locators to find web elements using ID, XPath, or CSS selectors.
+
+Code:
+
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://www.google.com")
+
+search = driver.find_element("name", "q")
+search.send_keys("Selenium")
+search.submit()
+
+How to Run:
+
+nano exp3.py
+python exp3.py
+
+Explanation: Uses locator (name) to find search box.
+
+🧪 Experiment 4
+
+Question: Design and implement form automation to fill and submit forms with test data.
+
+Code:
+
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://demo.guru99.com/test/newtours/register.php")
+
+driver.find_element("name","firstName").send_keys("Omkar")
+driver.find_element("name","lastName").send_keys("Shelar")
+driver.find_element("name","phone").send_keys("1234567890")
+driver.find_element("name","userName").send_keys("test@gmail.com")
+
+How to Run:
+
+nano exp4.py
+python exp4.py
+
+Explanation: Automatically fills form fields.
+
+🧪 Experiment 5
+
+Question: Design and implement dropdown and checkbox handling using Select and click methods.
+
+Code:
+
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+
+driver = webdriver.Chrome()
+driver.get("https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select")
+
+driver.switch_to.frame("iframeResult")
+
+dropdown = Select(driver.find_element("name","cars"))
+dropdown.select_by_visible_text("Saab")
+
+How to Run:
+
+nano exp5.py
+python exp5.py
+
+Explanation: Uses Select class to handle dropdown.
+
+🧪 Experiment 6
+
+Question: Design and implement alert and pop-up handling to interact with JavaScript alerts.
+
+Code:
+
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://the-internet.herokuapp.com/javascript_alerts")
+
+driver.find_element("xpath","//button[text()='Click for JS Alert']").click()
+
+alert = driver.switch_to.alert
+alert.accept()
+
+How to Run:
+
+nano exp6.py
+python exp6.py
+
+Explanation: Handles JavaScript alert popups.
+
+🧪 Experiment 7
+
+Question: Design and implement screenshot capturing to save images of web pages during testing.
+
+Code:
+
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://google.com")
+
+driver.save_screenshot("screenshot.png")
+
+How to Run:
+
+nano exp7.py
+python exp7.py
+
+Explanation: Captures screenshot of webpage.
+
+🧪 Experiment 8
+
+Question: Design and implement mouse and keyboard actions using the Actions class for advanced interactions.
+
+Code:
+
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+
+driver = webdriver.Chrome()
+driver.get("https://www.amazon.in")
+
+menu = driver.find_element("id","nav-link-accountList")
+
+actions = ActionChains(driver)
+actions.move_to_element(menu).perform()
+
+How to Run:
+
+nano exp8.py
+python exp8.py
+
+Explanation: Performs mouse hover action.
+
+🧪 Experiment 9
+
+Question: Design and implement web table interaction to extract and process data from table elements.
+
+Code:
+
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://www.w3schools.com/html/html_tables.asp")
+
+rows = driver.find_elements("xpath","//table[@id='customers']/tbody/tr")
+
+for row in rows:
+    print(row.text)
+
+How to Run:
+
+nano exp9.py
+python exp9.py
+
+Explanation: Extracts table data.
+
+🧪 Experiment 10
+
+Question: Design and implement wait mechanisms to handle dynamic web elements using implicit or explicit waits.
+
+Code:
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+driver = webdriver.Chrome()
+driver.get("https://google.com")
+
+wait = WebDriverWait(driver,10)
+element = wait.until(EC.presence_of_element_located((By.NAME,"q")))
+
+How to Run:
+
+nano exp10.py
+python exp10.py
+
+Explanation: Uses explicit wait to handle dynamic elements.
