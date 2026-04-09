@@ -1,0 +1,265 @@
+PART 1: WHAT IS SELENIUM (VIVA READY)
+Selenium is a web automation tool
+Used for testing web applications
+Controls browser using WebDriver
+Supports Chrome, Firefox, Edge
+Works with Python, Java, etc.
+
+👉 Keywords:
+
+WebDriver = browser controller
+Locator = find element
+Action = interaction
+Wait = handle delay
+⚙️ PART 2: FULL SETUP (KALI LINUX)
+✅ METHOD 1 (BEST – USE THIS)
+Step 1:
+sudo apt update
+sudo apt install python3-venv -y
+Step 2:
+python3 -m venv selenium-env
+Step 3:
+source selenium-env/bin/activate
+Step 4:
+pip install selenium
+Step 5:
+sudo apt install chromium chromium-driver -y
+⚠️ BACKUP METHOD (IF ERROR COMES)
+pip3 install selenium --break-system-packages
+🔁 Every time you open terminal:
+source selenium-env/bin/activate
+📂 HOW TO CREATE & RUN FILE
+nano exp1.py
+
+Paste code → Save (CTRL+O, ENTER, CTRL+X)
+
+Run:
+
+python exp1.py
+🧪 PART 3: ALL EXPERIMENTS
+🔹 EXPERIMENT 1
+Question:
+
+Design and implement Selenium environment setup to configure WebDriver and verify browser.
+
+Code:
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://www.google.com")
+Run:
+python exp1.py
+Note:
+
+Checks if browser opens → setup correct
+
+🔹 EXPERIMENT 2
+Question:
+
+Design and implement browser navigation.
+
+Code:
+from selenium import webdriver
+import time
+
+driver = webdriver.Chrome()
+
+driver.get("https://google.com")
+time.sleep(2)
+
+driver.get("https://youtube.com")
+time.sleep(2)
+
+driver.back()
+driver.forward()
+driver.refresh()
+Note:
+
+Back, forward, refresh
+
+🔹 EXPERIMENT 3
+Question:
+
+Implement locators.
+
+Code:
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://google.com")
+
+search = driver.find_element("name", "q")
+search.send_keys("Selenium")
+search.submit()
+Note:
+
+Locator = name
+
+🔹 EXPERIMENT 4
+Question:
+
+Form automation.
+
+Code:
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://demo.guru99.com/test/newtours/register.php")
+
+driver.find_element("name","firstName").send_keys("Omkar")
+driver.find_element("name","lastName").send_keys("Shelar")
+driver.find_element("name","phone").send_keys("1234567890")
+Note:
+
+Fills form automatically
+
+🔹 EXPERIMENT 5
+Question:
+
+Dropdown handling.
+
+Code:
+from selenium import webdriver
+from selenium.webdriver.support.ui import Select
+
+driver = webdriver.Chrome()
+driver.get("https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_select")
+
+driver.switch_to.frame("iframeResult")
+
+dropdown = Select(driver.find_element("name","cars"))
+dropdown.select_by_visible_text("Saab")
+Note:
+
+Uses Select class
+
+🔹 EXPERIMENT 6
+Question:
+
+Alert handling.
+
+Code:
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://the-internet.herokuapp.com/javascript_alerts")
+
+driver.find_element("xpath","//button[text()='Click for JS Alert']").click()
+
+alert = driver.switch_to.alert
+alert.accept()
+Note:
+
+Accept alert popup
+
+🔹 EXPERIMENT 7
+Question:
+
+Screenshot capture.
+
+Code:
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://google.com")
+
+driver.save_screenshot("screenshot.png")
+Note:
+
+Image saved
+
+🔹 EXPERIMENT 8
+Question:
+
+Mouse actions.
+
+Code:
+from selenium import webdriver
+from selenium.webdriver.common.action_chains import ActionChains
+
+driver = webdriver.Chrome()
+driver.get("https://www.amazon.in")
+
+menu = driver.find_element("id","nav-link-accountList")
+
+actions = ActionChains(driver)
+actions.move_to_element(menu).perform()
+Note:
+
+Mouse hover
+
+🔹 EXPERIMENT 9
+Question:
+
+Web table.
+
+Code:
+from selenium import webdriver
+
+driver = webdriver.Chrome()
+driver.get("https://www.w3schools.com/html/html_tables.asp")
+
+rows = driver.find_elements("xpath","//table[@id='customers']/tbody/tr")
+
+for row in rows:
+    print(row.text)
+Note:
+
+Prints table data
+
+🔹 EXPERIMENT 10
+Question:
+
+Wait mechanism.
+
+Code:
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+driver = webdriver.Chrome()
+driver.get("https://google.com")
+
+wait = WebDriverWait(driver,10)
+element = wait.until(EC.presence_of_element_located((By.NAME,"q")))
+Note:
+
+Waits for element to load
+
+🚨 PART 4: COMMON ERRORS + FIX
+❌ Error: externally-managed-environment
+
+✔ Fix:
+
+python3 -m venv selenium-env
+source selenium-env/bin/activate
+pip install selenium
+❌ Browser not opening
+
+✔ Fix:
+
+sudo apt install chromium chromium-driver
+❌ Element not found
+
+✔ Fix:
+
+Use correct locator
+Add wait
+💯 PART 5: EXAM + VIVA TIPS
+
+👉 If asked:
+What is Selenium?
+→ Tool for automating web browsers
+
+👉 What is WebDriver?
+→ Interface to control browser
+
+👉 What are locators?
+→ Used to find elements
+
+👉 Types of waits?
+→ Implicit, Explicit
+
+👉 Why use Selenium?
+→ Automation, fast testing, reduces manual work
