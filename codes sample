@@ -1,0 +1,27 @@
+Sure Ashish! Here's a simple MySQL query to create a table and insert a few rows. Let's say the table is about students:
+
+### ✅ Create Table Query
+```sql
+CREATE TABLE students (
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    course VARCHAR(50)
+);
+```
+
+### ✅ Insert Some Sample Data
+```sql
+INSERT INTO students (name, age, course)
+VALUES 
+('Ashish Pardeshi', 19, 'Cybersecurity'),
+('Shruti K.', 20, 'Computer Science'),
+('Aditya Mhaismale', 19, 'Cybersecurity');
+```
+
+### ✅ Select the Data
+```sql
+SELECT * FROM students;
+```
+
+This will show all students in the table. If you want to try something more advanced like `JOIN`, `GROUP BY`, or `WHERE` conditions, just say the word!
